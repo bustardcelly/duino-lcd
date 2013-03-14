@@ -2,7 +2,7 @@ duino-lcd
 ===
 | arduino project that allows sending textual content from node server to arduino to display on 16x2 Serial LCD display.
 
-![arduino schematic](https://github.com/bustardcelly/duino-lcd/docs/duino-lcd.png)
+![arduino schematic](https://github.com/bustardcelly/duino-lcd/blob/master/docs/duino_lcd.png)
 
 Requirements
 ---
