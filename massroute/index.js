@@ -26,23 +26,31 @@ if(args) {
 }
 
 function getPredictions() {
-  console.log('requesting...');
+  board.log('requesting...');
   request({
     uri: url,
     json: true
   }, function(err, response, body) {  
-    var predictions = body.predictions,
-        i, length = (!predictions || predictions.length > 2) ? 2 : predictions.length,
+    var predictions,
+        i, length,
         delimiter = " ",
         predictionStr = "";
 
-    for(i = 0; i < length; i++) {
-      if(i > 0) {
-        predictionStr = predictionStr + delimiter;
-      }
-      predictionStr = predictionStr + predictions[i].seconds.toString();
+    if(err) {
+      // TODO: Send error message.
+      board.log('Error: ' + err);
     }
-    lcd.write(predictionStr);
+    else {
+      predictions = body.predictions;
+      length = (!predictions || predictions.length > 2) ? 2 : predictions.length;
+      for(i = 0; i < length; i++) {
+        if(i > 0) {
+          predictionStr = predictionStr + delimiter;
+        }
+        predictionStr = predictionStr + predictions[i].seconds.toString();
+      }
+      lcd.write(predictionStr);
+    }
   });
 }
 
